@@ -13,7 +13,7 @@ sumdv :: [Int] -> Int
 sumdv [] = 0
 sumdv (x:xs)
   | (x `mod` 3 == 0 || x `mod` 4 == 0) && x `mod` 6 /= 0 = x + sumdv (xs)
-  | otherwise = sumdv(xs)
+  | otherwise = sumdv xs
 
 
 -- TEILAUFGABE b)
