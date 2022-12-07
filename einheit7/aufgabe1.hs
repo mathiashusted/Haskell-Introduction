@@ -34,11 +34,11 @@ zensiert n (x:xs)
 -- Vor: Der eingegebene Int n muss >= 0 (eine natürliche Zahl) sein
 -- Erg: Entfernt die n ersten sowie n letzten Elemente einer Liste, falls die Liste maximal 2*n Elemente enthält. Andernfalls
 --      gibt sie die ursprüngliche Liste aus
-dropTake :: [a] -> Int -> [a]
-dropTake [] _ = []
-dropTake (x:xs) n
-  | n >= 0 && length (x:xs) >= (2*n) = take (length (drop (n) (x:xs)) - n) (drop (n) (x:xs))
-  -- Überprüft die Voraussetzung, dann werden aus der Liste ohne die letzten n Elemente die ersten n Elemente dieser neuen Liste ausgegeben.
+dropTake :: Int -> [a] -> [a]
+dropTake _ [] = []
+dropTake n (x:xs)
+  | n >= 0 && length (x:xs) >= (2*n) = take n(x:xs) ++ drop (length (x:xs) - n) (x:xs)
+  -- Überprüft die Voraussetzung, dann wird die Liste mit den ersten n Elementen sowie die letzten n Elemente ausgegeben
   | n >= 0 && length (x:xs) < (2*n) = (x:xs)
   -- Bedingung ist nicht erfüllt
   | otherwise = error"Fehler"

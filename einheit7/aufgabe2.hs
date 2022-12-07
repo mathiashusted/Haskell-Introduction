@@ -2,6 +2,8 @@
 -- 07.12.2022
 -- Aufgabe 2
 
+
+module Aufgabe2 where
 -- TEILAUFGABE a)
 
 -- (Hilfsfunktion)

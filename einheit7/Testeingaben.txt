@@ -1,0 +1,45 @@
+--- ZU AUFGABE 1 ---
+
+*Aufgabe1> sumdv [3,4,6]
+7
+*Aufgabe1> sumdv [3,4,6,4123]
+7
+*Aufgabe1> sumdv [3,4,6,3705]
+3712
+*Aufgabe1> zensiert 'N' "AAASSSNNNFFF"
+"AAASSS***FFF"
+*Aufgabe1> zensiert 'A' "AAASSSNNNFFF"
+"***SSSNNNFFF"
+*Aufgabe1> zensiert 'F' "AAASSSNNNFFF"
+"AAASSSNNN***"
+*Aufgabe1> dropTake 0 [0,1,2,3,4,5,6]
+[]
+*Aufgabe1> dropTake 3 [0,1,2,3,4,5,6,7,8,9]
+[0,1,2,7,8,9]
+*Aufgabe1> dropTake 4 [0,1,2,3,4,5,6]
+[0,1,2,3,4,5,6]
+
+
+
+
+--- ZU AUFGABE 2 ---
+*Aufgabe2> lowhigh [-2,3,0,-4,1,0,4]
+(2,3)
+*Aufgabe2> lowhigh [-1,-5,-1234,-2,1,5,-3]
+(5,2)
+*Aufgabe2> lowhigh [-2,2]
+(1,1)
+*Aufgabe2> f x = x*x-5
+*Aufgabe2> lowhighFunc f [-2,3,0,-4,1,0,4]
+(4,3)
+*Aufgabe2> f x = x-5
+*Aufgabe2> lowhighFunc f [-2,3,0,-4,1,0,4]
+(7,0)
+*Aufgabe2> absmin [1.6, -0.1, -7.0, 2.2]
+0.1
+*Aufgabe2> absmin [1233,0.1,-0.2]
+0.1
+*Aufgabe2> toBools (<2) [-4,2,3,0,1]
+[True,False,False,True,True]
+*Aufgabe2> toBools (==2) [-4,2,3,0,1]
+[False,True,False,False,False]
