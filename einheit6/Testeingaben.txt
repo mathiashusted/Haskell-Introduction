@@ -1,0 +1,52 @@
+--- ZU AUFGABE 1 ---
+
+*Aufgabe1> ausdruck
+"32"
+*Aufgabe1> calc 2 "plus" 4
+6
+*Aufgabe1> calc 2 "minus" 4
+-2
+*Aufgabe1> calc 2 "mal" 4
+8
+*Aufgabe1> calc 2 "hoch" 4
+16
+*Aufgabe1> calc 2 "hoch" (-4)
+*** Exception: Exponent negativ
+CallStack (from HasCallStack):
+  error, called at aufgabe1.hs:33:29 in main:Aufgabe1
+*Aufgabe1> calc 2 "a" 2
+*** Exception: Ungültige Eingabe
+CallStack (from HasCallStack):
+  error, called at aufgabe1.hs:34:17 in main:Aufgabe1
+*Aufgabe1> spanne 2 1726 (-53) (-4)
+-53
+*Aufgabe1> spiegeln 'A'
+'Z'
+*Aufgabe1> spiegeln 'Y'
+'B'
+*Aufgabe1> spiegeln 'F'
+'U'
+
+
+
+
+
+--- ZU AUFGABE 2 ---
+*Aufgabe2> countZeros 64
+6
+*Aufgabe2> countZeros 63
+0
+*Aufgabe2> countZeros 153
+4
+*Aufgabe2> kteStelle 8 2
+0
+*Aufgabe2> kteStelle 15 2
+1
+*Aufgabe2> kteStelle 152 4
+1
+*Aufgabe2> verschStellen 1723517 23
+5
+*Aufgabe2> verschStellen 12538512 12538
+0
+*Aufgabe2> verschStellen 12538511234692 12538
+3
