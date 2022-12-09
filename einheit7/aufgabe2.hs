@@ -79,7 +79,6 @@ absmin (x:xs)
 
 
 
-
 -- TEILAUFGABE d)
 
 -- Vor: keine
