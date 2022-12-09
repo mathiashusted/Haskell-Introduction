@@ -86,4 +86,4 @@ absmin (x:xs)
 -- Erg: Eine Liste, die alle Elemente der Liste a enthalten, wobei darauf das Prädikat p angewendet wurde und ausschließlich aus booleschen Werten besteht
 toBools :: (a -> Bool) -> [a] -> [Bool]
 toBools _ [] = []
-toBools p (x:xs) = map p (x:xs)
+toBools p xs = map p xs
