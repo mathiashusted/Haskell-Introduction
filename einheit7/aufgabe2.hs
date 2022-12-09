@@ -68,21 +68,13 @@ lowhighFunc f (x:xs) = (evaluatesNegative f (x:xs), evaluatesPositive f (x:xs))
 
 -- TEILAUFGABE c)
 
--- HILFSFUNKTION
--- Vor: keine
--- Erg: Wandle alle Zahlen in der Liste in ihre jeweiligen Beträge um.
-mapabs :: [Float] -> [Float]
-mapabs [] = []
-mapabs (x:xs) = map abs (x:xs)
-
-
 -- Vor: keine
 -- Erg: Die Zahl, dessen Betrag den kleinsten Abstand zur 0 hat.
 absmin :: [Float] -> Float
 absmin [] = 0
 absmin (x:xs)
-  | True `elem` (map (<(abs x)) (mapabs xs)) = absmin xs -- In diesem Fall: Es gibt ein Element in der Liste, das noch kleiner ist als x - such weiter!
-  | not(True `elem` (map (<(abs x)) (mapabs xs))) = abs x -- Es gibt kein Element, das noch kleiner als x ist. x muss also das Ergebnis sein!
+  | True `elem` (map (<(abs x)) (map abs xs)) = absmin xs -- In diesem Fall: Es gibt ein Element in der Liste, das noch kleiner ist als x - such weiter!
+  | not(True `elem` (map (<(abs x)) (map abs xs))) = abs x -- Es gibt kein Element, das noch kleiner als x ist. x muss also das Ergebnis sein!
   | otherwise = error"Fehler"
 
 
