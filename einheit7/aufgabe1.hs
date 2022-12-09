@@ -37,7 +37,7 @@ zensiert n (x:xs)
 dropTake :: Int -> [a] -> [a]
 dropTake _ [] = []
 dropTake n (x:xs)
-  | n >= 0 && length (x:xs) >= (2*n) = take n(x:xs) ++ drop (length (x:xs) - n) (x:xs)
+  | n >= 0 && length (x:xs) >= (2*n) = take n (x:xs) ++ drop (length (x:xs) - n) (x:xs)
   -- Überprüft die Voraussetzung, dann wird die Liste mit den ersten n Elementen sowie die letzten n Elemente ausgegeben
   | n >= 0 && length (x:xs) < (2*n) = (x:xs)
   -- Bedingung ist nicht erfüllt
