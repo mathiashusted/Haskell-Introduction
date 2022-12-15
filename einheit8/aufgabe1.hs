@@ -92,9 +92,60 @@ bin2dez xs = foldl1 ((+).(2*)) n where
 type Eintrag = (Char, Int)
 type Tabelle = [Eintrag]
 
+-- Hilfsfunktion
+-- Vor: keine
+-- Erg: Gibt die Anzahl der Vorkommen des häufigsten Eintrages in einer gegebenen Tabelle aus
+maxZahl :: Tabelle -> Int
+maxZahl= foldr1 max . map snd
+
+-- Vor: Keine
+-- Erg: Gibt denjenigen Eintrag aus, der am häufigsten in der Tabelle vorkommt
 maxEintrag :: Tabelle -> Eintrag
-maxEintrag (x:xs) = ('A',foldl (maximum) x xs) {-where
-                    sucheEintraege :: Tabelle -> Eintrag
-                    sucheEintraege [a] = a
-                      | length xs > 0 = max (snd x, )
-                    sucheEintraege (x:xs)-}
+maxEintrag [] = (' ', 0)
+maxEintrag (x:xs)
+  | snd x == maxZahl (x:xs) = x
+  | otherwise = maxEintrag xs
+
+
+-- TEILAUFGABE d)
+
+-- (aus falten.hs)
+-- Vor.: n>=0
+-- Erg.: n-fache Komposition der Eingabefunktion ist geliefert.
+multi :: Int -> (a -> a) -> (a -> a)
+multi 0 f = id
+multi n f = f . multi (n-1) f
+
+-- Vor: n >= 0
+-- Erg: n-fache Komposition der Eingabefunktion für jedes Element aus der gegebenen Liste
+megaMap :: Int -> (a -> a) -> [a] -> [a]
+megaMap n f [] = []
+megaMap n f (x:xs) = map (multi n f) (x:xs)
+
+
+
+
+-- TEILAUFGABE e)
+{-
+Zur flip Funktion: Die flip Funktion nimmt eine Funktion, sowie zwei Variablen. Die flip Funktion nimmt die beiden Variablen,
+vertauscht sie, und führt dann die Funktion aus. Z.B. aus 2 `mod` 3 wird => 3 `mod` 2. Im Fall der foo Funktion werden die Zahlen
+einfach gespiegelt. In der innere flip Funktion wird der cons (:) Operator benutzt - das bedeutet, dass zwei Elemente miteinander
+in einer Liste verbunden werden - die beiden Variablen sind bloss vertauscht.
+Bspw. würde (flip (:)) [1,2,3,4] 0 zu [0,1,2,3,4] ausgewertet werden, da die 0 an die 0-te Stelle gerückt und dann geconst wird.
+Wir wissen, dass cons eine Funktion (:) :: a -> [a] -> [a] ist.
+Die foo Funktion ist also äquivalent zu der reverse Funktion.
+
+Für die Liste [1,2,3,4] wird foo wie folgt ausgewertet
+((([]:1):2):3):4 <--- Eingabeliste
+(flip (:)) wird angewendet
+Es folgt:
+flip (:) [] [1,2,3,4]
+flip (:) (((flip (:)) [] 1)) [2,3,4]
+usw.
+Es ergibt am Ende [4,3,2,1]
+-}
+
+-- Vor: Keine
+-- Erg: Die gespiegelte Liste [a]
+foo :: [a] -> [a]
+foo xs = foldl (flip (:)) [] xs
