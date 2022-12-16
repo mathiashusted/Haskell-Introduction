@@ -74,13 +74,6 @@ dez2bin n
   | n `mod` 2 == 1 = dez2bin (n `div` 2) ++ "1"
   | otherwise = error"Fehler"
 
--- HILFSFUNKTION
--- Vor: Im String befindet sich eine natürliche Zahl
--- Erg: Die Zahl als Liste z.B. 23 = [2,3]
-str2list :: String -> [Int]
-str2list "" = []
-str2list (c:cs) = (read [c] :: Int):(str2list cs)
-
 -- Vor: n ist eine Binärzahl
 -- Erg: n in Dezimaldarstellung
 bin2dez :: String -> Int
