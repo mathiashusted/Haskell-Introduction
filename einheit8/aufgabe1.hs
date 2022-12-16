@@ -4,6 +4,8 @@
 
 module Einheit8 where
 
+import Data.Char
+
 -- TEILAUFGABE a)
 
 {-
@@ -83,8 +85,7 @@ str2list (c:cs) = (read [c] :: Int):(str2list cs)
 -- Erg: n in Dezimaldarstellung
 bin2dez :: String -> Int
 bin2dez [] = 0
-bin2dez xs = foldl1 ((+).(2*)) n where
-                n = str2list xs
+bin2dez xs = foldl1 ((+).(2*)) (map (0-48+) (map (ord) xs))
 
 
 
