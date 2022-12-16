@@ -3,6 +3,8 @@
 -- Einheit 8
 
 
+module Einheit8 where
+
 -- TEILAUFGABE a)
 
 -- Vor: keine
@@ -105,7 +107,7 @@ merge (x:xs) (y:ys)
 
 
 
-{-
+
 
 -- TEILAUFGABE c)
 
@@ -115,50 +117,57 @@ merge (x:xs) (y:ys)
 triSort :: Ord a => [a] -> [a]
 triSort [] = []
 triSort [x] = [x]
-triSort xs = mergetri (triSort eins) (triSort zwei) (triSort drei)  
+triSort xs = merge(merge (mergeSort eins) (mergeSort zwei)) (insertSort drei)
          where (eins, zwei, drei) = durchdrei xs
 
--- Vor.: keine
--- Erg.: Zwei Listen ls und rs sind geliefert, für die gilt ls++rs==xs
---       und die Länge beider Listen unterscheidet sich um höchstens 1
+
+-- Vor: keine
+-- Erg: Die Liste [a] wird in drei gleich große Teile aufgeteilt (benötigt für Trisort)
 durchdrei :: Ord a => [a] -> ([a], [a], [a])
-durchdrei xs = help [] [] xs where
-    help ys zs xs
-      | otherwise = ([ys], [zs], [xs]) -- KORRIGIEREN
---     | length xs - length ys - length  <= 1 = (ys,xs)
---     | otherwise = help (ys ++ [head xs]) (tail xs)
-
--- Vor.: Die beiden Eingabelisten sind aufsteigend sortiert.
--- Erg.: Eine aufsteigend sortierte Liste ist geliefert, welche genau die
---       Elemente der beiden Eingabelisten enthält.
-mergetri :: Ord a => [a] -> [a] -> [a] -> [a]
-mergetri xs [] = xs
-mergetri [] ys = ys
-mergetri (x:xs) (y:ys)
-     | x < y = x : mergetri xs (y:ys)
-     | otherwise = y : mergetri (x:xs) ys
+durchdrei [] = ([],[],[])
+durchdrei xs = ((fst (drittel xs)),(fst (halbiere (snd (drittel xs)))),(snd (halbiere (snd (drittel xs)))))
+-- Das erste Element im Tupel ist das erst Drittel von xs, die restlichen beiden Dritteln werden berechnet, indem die
+-- restlichen 2/3 halbiert werden.
 
 
--}
+-- Vor.: keine
+-- Erg.: Zwei Listen ls und rs sind geliefert, wobei ls das erste Drittel von der gesamten Liste ergibt, und rs die restlichen 2/3
+drittel :: Ord a => [a] -> ([a], [a])
+drittel [] = ([],[])
+drittel xs = help [] xs where
+    help ys xs
+     | length xs <= (2 * (length ys)) = (ys, xs)
+     | otherwise = help (ys ++ [head xs]) (tail xs)
+-- [1,2,3] => ([1], [2,3])
 
-
-
-
+-- Testfunktion für triSort
+liste = map sin [1.0,2.0..1000.0]
+test liste
+  | mergeSort liste == triSort liste = "Korrekt"
+  | otherwise = "Nicht korrekt"
+-- Gibt "Korrekt aus!"
 
 
 -- TEILAUFGABE d)
 type Eintrag = (Char, Int)
 type Tabelle = [Eintrag]
 
+-- Hilfsfunktiopn
+-- Vor: Keine
+-- Erg: Die Anzahl der Vorkommen des häufigsten Elementes in einer Tabelle
 maxZahl :: Tabelle -> Int
 maxZahl = foldr1 max . map snd
 
+-- Vor: Keine
+-- Erg: Findet den häufigsten Eintrag
 maxEintrag :: Tabelle -> Eintrag
 maxEintrag [] = (' ', 0)
 maxEintrag (x:xs)
   | snd x == maxZahl (x:xs) = x
   | otherwise = maxEintrag xs
 
+-- Vor: Keine
+-- Erg: Sortierte Tabelle absteigend nach Anzahl Vorkommen eines Chars
 selectSort :: Tabelle -> Tabelle
 selectSort [] = []
 selectSort (x:xs) = maxEintrag (x:xs):selectSort (remove (maxEintrag (x:xs)) (x:xs))
