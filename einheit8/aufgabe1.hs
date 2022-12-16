@@ -2,6 +2,8 @@
 -- 14.12.2022
 -- Einheit 8
 
+module Einheit8 where
+
 -- TEILAUFGABE a)
 
 {-
