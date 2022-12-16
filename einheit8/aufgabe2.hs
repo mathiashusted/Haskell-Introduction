@@ -152,18 +152,14 @@ test liste
 type Eintrag = (Char, Int)
 type Tabelle = [Eintrag]
 
--- Hilfsfunktiopn
--- Vor: Keine
--- Erg: Die Anzahl der Vorkommen des häufigsten Elementes in einer Tabelle
-maxZahl :: Tabelle -> Int
-maxZahl = foldr1 max . map snd
 
 -- Vor: Keine
 -- Erg: Findet den häufigsten Eintrag
 maxEintrag :: Tabelle -> Eintrag
 maxEintrag [] = (' ', 0)
+maxEintrag [x] = x
 maxEintrag (x:xs)
-  | snd x == maxZahl (x:xs) = x
+  | snd x > snd (maxEintrag xs) = x
   | otherwise = maxEintrag xs
 
 -- Vor: Keine
@@ -171,3 +167,20 @@ maxEintrag (x:xs)
 selectSort :: Tabelle -> Tabelle
 selectSort [] = []
 selectSort (x:xs) = maxEintrag (x:xs):selectSort (remove (maxEintrag (x:xs)) (x:xs))
+
+
+
+
+
+-- TEILAUFGABE e)
+{-
+Laufzeit von selectSort: Anzahl der Vergleiche innerhalb von selectSort
+Sei n die Länge der eingegebenen Tabelle
+selectSort selber ruft sich selbst n Mal auf durch Rekursion. (Liste wird immer um das erste Element verkürzt)
+Innerhalb von selectSort wird maxEintrag zusätzlich zwei Mal aufgerufen
+maxEintrag ist eine Funktion, die ebenfalls sich selbst n Mal aufruft, um alle Einträge zu vergleichen.
+Es folgt => n * (maxEintrag + maxEintrag)
+Wir wissen, dass maxEintrag ebenfalls bis zu n Mal sich selbst aufruft
+=> n * (n + n) = n^2 + n^2 = 2(n^2)
+Also maximal 2(n^2) Mal.
+-}
