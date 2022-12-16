@@ -1,0 +1,45 @@
+AUFGABE 1
+
+*Einheit8> dez2bin 18293
+"100011101110101"
+*Einheit8> dez2bin 10
+"1010"
+*Einheit8> bin2dez "100011101110101"
+18293
+*Einheit8> bin2dez "1010"
+10
+*Einheit8> maxEintrag [('a',2)]
+('a',2)
+*Einheit8> maxEintrag [('a',12),('q',41),('p',2),('i',3)]
+('q',41)
+*Einheit8> f x = x*x+2
+*Einheit8> megaMap 4 f [5,7,2,87,3]
+[285543815771,45908904423323,2090918,10795084099914528307724286466203,228947163]
+*Einheit8> f x = x*x-x
+*Einheit8> megaMap 4 f [5,7,2,87,3]
+[20741616380,8782696764282,2,9815432005352287628854552926762,756030]
+*Einheit8>
+*Einheit8> foo [1,5,23,7,3]
+[3,7,23,5,1]
+*Einheit8> foo [1,2,3,4]
+[4,3,2,1]
+
+
+
+AUFGABE 2
+*Einheit8> remove 2 [1,6,2,3,6]
+[1,6,3,6]
+*Einheit8> remove 2 [1,6,2,3,6,2]
+[1,6,3,6,2]
+*Einheit8> remove 0 [1,6,2,3,6,2]
+[1,6,2,3,6,2]
+*Einheit8> triSort [1,4,3,8,6,5,3,8,1235]
+[1,3,3,4,5,6,8,8,1235]
+*Einheit8> triSort [9,8,7,6,5,4,3,2,1]
+[1,2,3,4,5,6,7,8,9]
+*Einheit8> test liste
+"Korrekt"
+*Einheit8> selectSort [('a',12),('q',41),('p',2),('i',3)]
+[('q',41),('a',12),('i',3),('p',2)]
+*Einheit8> selectSort [('q',24),('s',66),('p',2),('d',312)]
+[('d',312),('s',66),('q',24),('p',2)]
