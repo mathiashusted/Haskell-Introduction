@@ -34,11 +34,11 @@ ersteU n = help 0 8 n where                                   -- Anfangswerte f(
 -- Vor: n ist eine nicht-leere Binärsequenz
 -- Erg: Dezimalzahl, welche durch die Binärsequenz repräsentiert ist
 bin2dez :: String -> Int
-bin2dez xs = help ((length xs)-1) 0 (map (0-48+) (map (ord) xs)) where
-              help _ n [] = n
+bin2dez xs = help ((length xs)-1) 0 (map (0-48+) (map (ord) xs)) where -- An die Hilfsfunktion geben wir weiter: p als Länge der Liste - 1 (um die Potenz zu ermitteln), n = 0 für die Dezimaldarstellung, sowie die Liste mit den Zahlen als jeweils ein Element
+              help _ n [] = n                                          -- Rekursionsanker
               help p n xs
-                | xs!!0 == 1 = help (p-1) (n+(2^p)) (drop 1 xs)
-                | xs!!0 == 0 = help (p-1) (n) (drop 1 xs)
-                | otherwise = error"Fehler! Keine Binärdarstellung"
+                | xs!!0 == 1 = help (p-1) (n+(2^p)) (drop 1 xs)        -- Erstes Element der Liste ist 1 => Wir erhöhen die Dezimalzahl um 2^p, verringern für das nächste Element die Potenz um 1
+                | xs!!0 == 0 = help (p-1) (n) (drop 1 xs)              -- Erstes Element ist 0           => Wir lassen die Dezimalzahl, wie sie ist
+                | otherwise = error"Fehler! Keine Binärdarstellung"    -- Pattern exhaustion
 
 
