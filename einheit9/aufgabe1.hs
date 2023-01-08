@@ -42,4 +42,3 @@ bin2dez xs = help ((length xs)-1) 0 (map (0-48+) (map (ord) xs)) where -- An die
                 | xs!!0 == 0 = help (p-1) (n) (drop 1 xs)              -- Erstes Element ist 0           => Wir lassen die Dezimalzahl, wie sie ist
                 | otherwise = error"Fehler! Keine Binärdarstellung"    -- Pattern exhaustion
 
-
