@@ -27,5 +27,7 @@ c = [x * pi * 2 | x <- [1.0..100.0]]
 -- Vor: Keine
 -- Erg: Gibt an (True/False), ob Element n in der Liste enthalten ist.
 zfElem :: Eq a => a -> [a] -> Bool
-zfElem n xs = foldl f False xs where
-              f a1 z = z == n || a1
+zfElem n xs = foldl f False xs where -- Wendet f auf xs an, mit False als erstes Element (False ist neutrales Element)
+              f a1 z = z == n || a1  -- f ist Funktion mit entweder z (falls z gleich n ist, also Bedingung eintritt) oder dem Inhalt des Akkumulators
+                                     -- Es entsteht eine Verkettung aus ODER (||), und wenn eines dieser Elemente True wird
+                                     -- d.h. die Bedingung eintritt => dann ist auch der ganze Term True.
