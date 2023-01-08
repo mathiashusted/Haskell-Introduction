@@ -1,6 +1,7 @@
 -- Mathias Husted, Nourolhoda Bonyani
 -- 03.01.2023
 -- Aufgabe 1
+-- Anmerkung: Restliche Teilaufgaben wurden in der PDF bearbeitet.
 
 module Aufgabe1 where
 

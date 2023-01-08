@@ -1,6 +1,7 @@
 -- Mathias Husted, Nourolhoda Bonyani
 -- 04.01.2023
 -- Aufgabe 2
+-- Anmerkung: Restliche Aufgaben wurden in der PDF bearbeitet
 
 module Aufgabe2 where
 
@@ -23,7 +24,6 @@ c = [x * pi * 2 | x <- [1.0..100.0]]
 -- Berechnet die Fläche aller Kreis mit einem Radius von 1 bis 100
 
 -- TEILAUFGABE d)
-{-
-zfElem :: Eq a -> Eq a => [a] -> Bool
-zfElem n (y:ys) = (foldl ($) 0 [(+1) | _ <- x, n == x]) > 1
--}
+zfElem :: Eq a => a -> [a] -> Bool
+zfElem n xs = foldl f False xs where
+              f a1 z = z == n || a1
