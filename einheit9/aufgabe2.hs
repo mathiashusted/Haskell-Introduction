@@ -24,6 +24,8 @@ c = [x * pi * 2 | x <- [1.0..100.0]]
 -- Berechnet die Fläche aller Kreis mit einem Radius von 1 bis 100
 
 -- TEILAUFGABE d)
+-- Vor: Keine
+-- Erg: Gibt an (True/False), ob Element n in der Liste enthalten ist.
 zfElem :: Eq a => a -> [a] -> Bool
 zfElem n xs = foldl f False xs where
               f a1 z = z == n || a1
