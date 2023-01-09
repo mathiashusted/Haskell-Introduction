@@ -34,6 +34,9 @@ knuts2Geld n = (Preis (n `mod` 29) ((n `div` 29) `mod` (17)) (n `div` (493)))
 -- Bei Sickel müssen wir (n `div` 29) `mod` 17 rechnen, damit wir bei alle Galleonen den Wert wieder auf 0 setzen.
 -- Als letztes ist der Galleonenwert n `div` 493 (17*29) - hier brauchen wir keine weitere Modulorechnung, da es die höchstwertige Ziffer ist
 
+-- Diese beiden Hilfsfunktionen sind sinnvoll, weil es am einfachsten ist, Rechenoperationen auf die reine Knutsmenge auszuführen.
+-- Wenn wir die Geldmenge erstmal über geld2Knuts im Dezimalsystem haben, können wir also unsere Rechenoperation ausführen, und im Anschluss die ausgegebene
+-- Zahl mit knuts2Geld zurück in das richtige Format konvertieren.
 
 -- Vor: Keine
 -- Erg: Differenz 
