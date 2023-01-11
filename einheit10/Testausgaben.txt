@@ -1,0 +1,41 @@
+--- AUFGABE 1 ---
+*Aufgabe1> a = (Preis 2 16 2)
+*Aufgabe1> b = (Preis 28 15 1)
+*Aufgabe1> differenz a b
+Preis 3 0 1
+*Aufgabe1> kannAbheben a b
+True
+*Aufgabe1> tausche (Preis 2817 264 1)
+Preis 4 4 22
+*Aufgabe1> tausche a
+Preis 2 16 2
+*Aufgabe1> a = (Preis 251 2 11)
+*Aufgabe1> b = (Preis 0 2 52)
+*Aufgabe1> differenz a b
+Preis 19 8 (-41)
+*Aufgabe1> kannAbheben a b
+False
+*Aufgabe1> tausche a
+Preis 19 10 11
+*Aufgabe1> tausche b
+Preis 0 2 52
+
+
+--- AUFGABE 2 ---
+*Aufgabe2> a = liste2Menge  [1,2,3,4] -- Als Menge initialisieren
+*Aufgabe2> b = liste2Menge [3,4,5,6]
+*Aufgabe2> a
+{1, 2, 3, 4}
+*Aufgabe2> b
+{3, 4, 5, 6}
+*Aufgabe2> a == b
+False
+*Aufgabe2> a /= b
+True
+*Aufgabe2> a `vereinigung` b
+{1, 2, 3, 4, 5, 6}
+*Aufgabe2> b `vereinigung` a
+{5, 6, 1, 2, 3, 4}
+*Aufgabe2> -- Sind äquivalent
+*Aufgabe2> a `schnitt` b
+*** Exception: aufgabe2.hs:(43,1)-(44,71): Non-exhaustive patterns in function vereinigung
