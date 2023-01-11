@@ -12,7 +12,6 @@ data Menge a = Menge [a]
 -- TEILAUFGABE a)
 instance Show a => Show (Menge a) where
   show (Menge []) = "∅"
---  show (Menge (x:xs)) = "{" ++ show x ++ ", " ++ (show (Menge xs)) ++ "}"
   show (Menge (x:xs)) = "{" ++ (intercalate ", " (map show (x:xs)) ) ++ "}"
 
 
@@ -35,6 +34,7 @@ vonListe (x:xs)
 instance Eq a => Eq (Menge a) where
   (==) (Menge []) (Menge []) = True
   (==) (Menge (x:xs)) (Menge (y:ys)) = x == y && xs == ys
+  (/=) (Menge (x:xs)) (Menge (y:ys)) = x /= y || xs /= ys
 
 
 -- TEILAUFGABE d)
