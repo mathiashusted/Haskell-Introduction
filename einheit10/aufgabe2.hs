@@ -17,16 +17,16 @@ instance Show a => Show (Menge a) where
 
 
 -- TEILAUFGABE b)
-menge2Liste :: Eq a => Menge a -> [a]
-menge2Liste (Menge []) = []
-menge2Liste (Menge (x:xs)) = [x] ++ menge2Liste (Menge xs)
+vonMenge :: Eq a => Menge a -> [a]
+vonMenge (Menge []) = []
+vonMenge (Menge (x:xs)) = [x] ++ vonMenge (Menge xs)
 
-liste2Menge :: Eq a => [a] -> Menge a
-liste2Menge [] = Menge []
-liste2Menge [x] = Menge [x]
-liste2Menge (x:xs)
-  | x `elem` xs = liste2Menge xs
-  | not(x `elem` xs) = Menge ([x]++(menge2Liste(liste2Menge (xs))))
+vonListe :: Eq a => [a] -> Menge a
+vonListe [] = Menge []
+vonListe [x] = Menge [x]
+vonListe (x:xs)
+  | x `elem` xs = vonListe xs
+  | not(x `elem` xs) = Menge ([x]++(vonMenge(vonListe (xs))))
 
 
 
@@ -41,7 +41,7 @@ instance Eq a => Eq (Menge a) where
 -- Funktion wurde vereinigung statt union genannt, um Konflikte mit Data.List zu vermeiden
 vereinigung :: Eq a => Menge a -> Menge a -> Menge a
 vereinigung (Menge []) (Menge []) = (Menge [])
-vereinigung (Menge (x:xs)) (Menge (y:ys)) = (liste2Menge(x:xs ++ y:ys))
+vereinigung (Menge (x:xs)) (Menge (y:ys)) = (vonListe(x:xs ++ y:ys))
 
 schnitt :: Eq a => Menge a -> Menge a -> Menge a
 schnitt (Menge []) (Menge []) = (Menge [])
