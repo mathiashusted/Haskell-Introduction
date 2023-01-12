@@ -45,9 +45,13 @@ vereinigung (Menge (x:xs)) (Menge (y:ys)) = (vonListe(x:xs ++ y:ys))
 
 schnitt :: Eq a => Menge a -> Menge a -> Menge a
 schnitt (Menge []) (Menge []) = (Menge [])
+schnitt (Menge xs) (Menge ys) = vonListe(filter (`elem` ys) xs)
+{-
+schnitt (Menge []) (Menge []) = (Menge [])
 schnitt (Menge []) _ = (Menge [])
 schnitt _ (Menge []) = (Menge [])
 schnitt (Menge (x:xs)) (Menge (y:ys))
   | x `elem` (y:ys) = vereinigung (Menge [x]) (schnitt (Menge (xs)) (Menge (y:ys)))
   | not(x `elem` (y:ys)) = schnitt (Menge xs) (Menge (y:ys))
    -- schnitt (Menge (x:xs)) (Menge (y:ys)) = (Menge (filter (elem (y:ys)) (x:xs)))
+-}

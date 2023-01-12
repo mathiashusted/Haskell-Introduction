@@ -22,20 +22,17 @@ Preis 0 2 52
 
 
 --- AUFGABE 2 ---
-*Aufgabe2> a = liste2Menge  [1,2,3,4] -- Als Menge initialisieren
-*Aufgabe2> b = liste2Menge [3,4,5,6]
-*Aufgabe2> a
-{1, 2, 3, 4}
-*Aufgabe2> b
-{3, 4, 5, 6}
+*Aufgabe2> a = vonListe [1,2,3,4]
+*Aufgabe2> b = vonListe [4,5,6,7]
+*Aufgabe2> a `vereinigung` b
+{1, 2, 3, 4, 5, 6, 7}
+*Aufgabe2> a `schnitt` b
+{4}
 *Aufgabe2> a == b
 False
 *Aufgabe2> a /= b
 True
-*Aufgabe2> a `vereinigung` b
-{1, 2, 3, 4, 5, 6}
-*Aufgabe2> b `vereinigung` a
-{5, 6, 1, 2, 3, 4}
-*Aufgabe2> -- Sind äquivalent
-*Aufgabe2> a `schnitt` b
-*** Exception: aufgabe2.hs:(43,1)-(44,71): Non-exhaustive patterns in function vereinigung
+*Aufgabe2> vonListe [1,5,2,3,7] `schnitt` vonListe [7]
+{7}
+*Aufgabe2> vonListe []
+∅
