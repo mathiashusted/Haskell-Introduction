@@ -99,12 +99,57 @@ Gemeinsamkeiten:
     - Die beiden Funktionen haben beide dieselbe grundlegende Funktion - sie nehmen die Elemente aus einer Liste (bzw. Baum), ordnen sie "gefaltet" an,
         und wenden zwischen jeder Faltung die Funktion f an.
     - Es wird bei beiden Funktionen ein "Anfangselement" (=e - oft auch neutrales Element benannt) verwendet
-    - 
+    - Bei beiden Funktionen gibt es die gleiche Folge von Argumenten - Funktion, neutrales Element, Baum(/Liste)
 
 Unterschiede:
     - Bei foldr wird das neutrale Element einmalig an den Anfangspunkt gesetzt (im innersten Term bei foldr), bei foldt wird dieser allerdings bei
         jeder Rekursion erneut eingefügt
     - Bei foldt wird bei jedem Durchlauf die Funktion zwei Mal rekursiv aufgerufen, während foldr nur ein rekursiver Aufruf benötigt (da er nicht zwei separate
         Bäume, sondern nur eine Liste verarbeitet)
-    -
 -}
+
+
+
+
+-- TEILAUFGABE d)
+
+sumHelp :: Num a => a -> a -> a -> a
+sumHelp x l r = x + l + r
+
+
+sumTree :: Num a => BinBaum a -> a
+sumTree Nil = 0
+sumTree (Knoten x lub rub) = (foldt sumHelp 0 lub) + (foldt sumHelp 0 rub) + x
+
+
+-- TEILAUFGABE e)
+
+{-
+preOrder funktioniert genauso wie baum2List
+
+Folgendes gilt bei den Traversierungen:
+PreOrder:  [x] ++ L_L ++ L_R
+InOrder:   L_L ++ [x] ++ L_R
+PostOrder: L_L ++ L_R ++ [x]
+-}
+
+-- Vor: Keine
+-- Erg: Baum sortiert nach preOrder als Liste
+preOrder :: Ord a => BinBaum a -> [a]
+preOrder Nil = []
+preOrder (Knoten x lub rub) = [x] ++ preOrder lub ++ preOrder rub
+
+
+-- Vor: Keine
+-- Erg: Baum sortiert nach inOrder als Liste
+inOrder :: Ord a => BinBaum a -> [a]
+inOrder Nil = []
+inOrder (Knoten x lub rub) = inOrder lub ++ [x] ++ inOrder rub
+
+
+
+-- Vor: Keine
+-- Erg: Baum sortiert nach postOrder als Liste
+postOrder :: Ord a => BinBaum a -> [a]
+postOrder Nil = []
+postOrder (Knoten x lub rub) = postOrder lub ++ postOrder rub ++ [x]
