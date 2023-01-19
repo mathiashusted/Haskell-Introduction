@@ -4,6 +4,7 @@
 
 module Aufgabe2 where
 
+import Data.Char
 import Data.List
 
 data BinBaum a = Nil | Knoten a (BinBaum a) (BinBaum a) deriving (Eq, Show, Ord) -- (unechte) Binärbäume
@@ -73,12 +74,36 @@ baum2List (Knoten x lub rub) = [x] ++ baum2List lub ++ baum2List rub
 -- Erg: Histogramm für alle Blätter eines Baums
 histogramm :: BinBaum String -> [(Char, Int)]
 histogramm Nil = []
-histogramm (Knoten x lub rub) = histogrammhelp (intercalate "" (baum2List (Knoten x lub rub)))
-
--- chiffre :: Int -> BinBaum String -> BinBaum String
+histogramm (Knoten x lub rub) = histogrammhelp (intercalate "" (baum2List (Knoten x lub rub))) -- Intercalate hilft hierbei, alle Elemente zu einem String zusammenzufassen.
 
 
+-- Funktion aus Vorlesung
+-- Vor: Keine
+-- Erg: Die Funktion f wird auf jedes Element des Baums angewendet
+mapT :: (a -> b) -> BinBaum a -> BinBaum b
+mapT f Nil = Nil
+mapT f (Knoten x l r) = Knoten (f x) (mapT f l) (mapT f r)
 
+-- Funktion wurde kopiert aus 08/Quelltexte/kodierung.hs
+-- Vor.: Eingabe-Char ist ein Kleinbuchstabe
+-- Erg.: n-te Cäsarkodierung des Eingabechars ist geliefert.
+kodiereChar :: Int -> Char -> Char
+kodiereChar n c
+   | isLower c = chr (ord 'a' + (ord c - ord 'a' + n)`mod`26)
+   | otherwise = c
+
+-- Funktion wurde kopiert aus 08/Quelltexte/kodierung.hs
+-- Vor.: keine
+-- Erg.: String ist geliefert, in dem alle Kleinbuchstaben durch ihre
+--       n-te Cäsarkodierung ersetzt sind.
+kodiere :: Int -> String -> String
+kodiere n cs = map (kodiereChar n) cs
+
+-- Vor: Der Baum besteht aus Strings
+-- Erg: Jeder Buchstabe wird um n Stellen im Alphabet verschoben
+chiffre :: Int -> BinBaum String -> BinBaum String
+chiffre _ Nil = Nil
+chiffre n (Knoten x lub rub) = mapT (kodiere n) (Knoten x lub rub)
 
 
 
@@ -105,7 +130,7 @@ Unterschiede:
     - Bei foldr wird das neutrale Element einmalig an den Anfangspunkt gesetzt (im innersten Term bei foldr), bei foldt wird dieser allerdings bei
         jeder Rekursion erneut eingefügt
     - Bei foldt wird bei jedem Durchlauf die Funktion zwei Mal rekursiv aufgerufen, während foldr nur ein rekursiver Aufruf benötigt (da er nicht zwei separate
-        Bäume, sondern nur eine Liste verarbeitet)
+        Bäume, sondern nur eine Liste verarbeitet) - dies kann die Laufzeit erheblich verlängern
 -}
 
 
@@ -113,13 +138,12 @@ Unterschiede:
 
 -- TEILAUFGABE d)
 
-sumHelp :: Num a => a -> a -> a -> a
-sumHelp x l r = x + l + r
-
-
+-- Vor: Keine
+-- Erg: Bildet die Summe sämtlicher Elemente des Baums
 sumTree :: Num a => BinBaum a -> a
 sumTree Nil = 0
-sumTree (Knoten x lub rub) = (foldt sumHelp 0 lub) + (foldt sumHelp 0 rub) + x
+sumTree (Knoten x lub rub) = (foldt sumHelp 0 lub) + (foldt sumHelp 0 rub) + x where
+    sumHelp x l r = x + l + r
 
 
 -- TEILAUFGABE e)
