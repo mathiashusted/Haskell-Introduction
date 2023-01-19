@@ -1,0 +1,64 @@
+TEILAUFGABE a)
+
+Knoten "tes" (Knoten "te" (Knoten "t" Nil Nil) Nil) (Knoten "test" Nil Nil)
+*Aufgabe2> contains b 't'
+True
+*Aufgabe2> contains b 'e'
+True
+*Aufgabe2> contains b 's'
+True
+*Aufgabe2> contains b 'q'
+False
+
+*Aufgabe2> longest b
+"test"
+
+
+TEILAUFGABE b)
+
+*Aufgabe2> histogramm b
+[('t',5),('s',2),('e',3)]
+
+*Aufgabe2> chiffre 0 b
+Knoten "tes" (Knoten "te" (Knoten "t" Nil Nil) Nil) (Knoten "test" Nil Nil)
+*Aufgabe2> chiffre 1 b
+Knoten "uft" (Knoten "uf" (Knoten "u" Nil Nil) Nil) (Knoten "uftu" Nil Nil)
+*Aufgabe2> chiffre 26 b
+Knoten "tes" (Knoten "te" (Knoten "t" Nil Nil) Nil) (Knoten "test" Nil Nil)
+*Aufgabe2> chiffre (-3) b
+Knoten "qbp" (Knoten "qb" (Knoten "q" Nil Nil) Nil) (Knoten "qbpq" Nil Nil)
+
+
+TEILAUFGABE d)
+
+*Aufgabe2> c = (Knoten 2 (Knoten 3 Nil Nil) Nil)
+*Aufgabe2> sumTree c
+5
+*Aufgabe2> sumTree (Knoten 23 (Knoten 3 Nil Nil) (Knoten 2 Nil Nil))
+28
+
+
+
+TEILAUFGABE e)
+*Aufgabe2> b
+Knoten "tes" (Knoten "te" (Knoten "t" Nil Nil) Nil) (Knoten "test" Nil Nil)
+*Aufgabe2> c = (Knoten 2 (Knoten 3 Nil Nil) Nil)
+*Aufgabe2> d = (Knoten 23 (Knoten 3 Nil Nil) (Knoten 2 Nil Nil))
+*Aufgabe2> preOrder b
+["tes","te","t","test"]
+*Aufgabe2> preOrder c
+[2,3]
+*Aufgabe2> preOrder d
+[23,3,2]
+*Aufgabe2> inOrder b
+["t","te","tes","test"]
+*Aufgabe2> inOrder c
+[3,2]
+*Aufgabe2> inOrder d
+[3,23,2]
+*Aufgabe2> postOrder b
+["t","te","test","tes"]
+*Aufgabe2> postOrder c
+[3,2]
+*Aufgabe2> postOrder d
+[3,2,23]
